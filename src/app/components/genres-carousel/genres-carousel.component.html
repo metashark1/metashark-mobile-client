@@ -1,0 +1,27 @@
+<div class="ion-padding-start mb-4">
+  <ion-row class="ion-align-items-center">
+    <ion-col size="12">
+      <h4 class="m-0">Genres</h4>
+    </ion-col>
+  </ion-row>
+  <div class="forecast-container-wrap">
+    <ion-row class="forecast-container">
+      <ng-container *ngIf="apService.isLoaded['genres']">
+        <ion-col [routerLink]="['/user/search']" [queryParams]="{pagename: item.name, genre: item.id}" size="4"
+          class="forecast-item" *ngFor="let item of apService.genresList;">
+          <div class="genre small">
+            <span>
+              {{ item?.name }}
+            </span>
+          </div>
+        </ion-col>
+      </ng-container>
+
+      <ng-container *ngIf="!apService.isLoaded['genres']">
+        <ion-col size="4" class="forecast-item" *ngFor="let item of [1,2,3,4,5,6,7,8];">
+          <div class="genre loading small"></div>
+        </ion-col>
+      </ng-container>
+    </ion-row>
+  </div>
+</div>

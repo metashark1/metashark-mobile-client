@@ -1,0 +1,8 @@
+{
+  "name": "shark-app",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

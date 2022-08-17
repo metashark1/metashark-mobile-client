@@ -1,0 +1,82 @@
+<section class="profile px-12" *ngIf="_userService.userData">
+  <div class="ion-text-center avatar-center mt-5 mb-5">
+    <!-- AVATAR START  -->
+    <ion-avatar (click)="selectImage()">
+      <div class="default" *ngIf="!photoUrl">
+        <span>
+          {{ (_userService.userData?.name).substring(0, 1) }}
+        </span>
+      </div>
+      <img *ngIf="photoUrl" src="{{photoUrl}}" />
+      <!-- <span class="edit-btn" *ngIf="!isAvaLoadProcess">
+        <ion-icon name="pencil"></ion-icon>
+      </span> -->
+      <div class="ava_loading" *ngIf="isAvaLoadProcess">
+        <ion-spinner></ion-spinner>
+      </div>
+    </ion-avatar>
+    <!-- AVATAR END  -->
+
+    <!-- USER INFO START  -->
+    <ion-text color="dark">
+      <p class="mt-2 mb-1">
+        {{ _userService.userData?.email }}
+      </p>
+    </ion-text>
+    <!-- USER INFO END  -->
+  </div>
+
+  <!-- SETTINGS AND FUNCTIONS BLOCK START -->
+  <div class="ion-padding">
+    <ion-list>
+      <div class="mt-5">
+        <!-- [routerLink]="['/user/courier-form']" -->
+        <ion-item lines="full" detail button [routerLink]="['/profile-edit']" [queryParams]="{type: 'profile'}">
+          <ion-label color="primary">
+            {{'edit' |tr}}
+          </ion-label>
+        </ion-item>
+
+        <ion-item lines="full" detail button [routerLink]="['/profile-edit']" [queryParams]="{type: 'password'}">
+          <ion-label color="primary">
+            {{'change_pasword' |tr}}
+          </ion-label>
+        </ion-item>
+
+        <div class="mt-5 mb-3">
+          <ion-item lines="full" detail button (click)="soonWillBe()">
+            <ion-label color="primary">{{'billing' |tr}}</ion-label>
+            <ion-note slot="end" color="warning" class="small py-0 pr-2 ion-align-self-center">
+              {{ _userService.userData?.type }}
+            </ion-note>
+          </ion-item>
+
+          <ion-item lines="full" detail button (click)="soonWillBe()">
+            <ion-label color="primary">
+              {{'history' |tr}}
+            </ion-label>
+          </ion-item>
+
+        </div>
+        <div class="mt-5 mb-3">
+          <ion-item lines="full" button (click)="logout()" detail>
+            <ion-label color="danger" class="text-danger">
+              {{'exit' |tr}}</ion-label>
+          </ion-item>
+        </div>
+      </div>
+    </ion-list>
+  </div>
+  <!-- SETTINGS AND FUNCTIONS BLOCK END -->
+
+</section>
+
+<!-- DATA WAITING BLOCK START  -->
+<div class="dataWaiting" *ngIf="!_userService.userData">
+  <div class="content">
+    <ion-spinner></ion-spinner>
+    <div class="h6 mb-5">{{'data_loading_process' |tr}}</div>
+  </div>
+  <div class="blur-bg"></div>
+</div>
+<!-- DATA WAITING BLOCK END  -->

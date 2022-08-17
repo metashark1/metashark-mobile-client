@@ -1,0 +1,41 @@
+<!-- SHOW GTEETING SLIDER -->
+<app-greeting *ngIf="!closeGreeting" (closeGreeting)="closeGreetingLogin($event)"></app-greeting>
+
+<ion-content *ngIf="closeGreeting">
+  <div class="bg_auth"></div>
+  <ion-row class="d-flex ion-justify-content-center ion-align-items-center h-100">
+    <ion-col size="12">
+      <img src="assets/img/metashark_logo.svg" class="logo">
+      <div class="auth_card">
+        <!-- SWITCH SEGMENT START  -->
+        <div class="ion-padding">
+          <ion-segment [(ngModel)]="tabSwitch" color="warning">
+            <ion-segment-button [value]="status" *ngFor="let status of ['auth','registration', 'restore']; index as i">
+              <ion-label>{{status |tr}}</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </div>
+        <!-- SWITCH SEGMENT END  -->
+
+        <!-- AUTH START -->
+        <app-auth-form *ngIf="tabSwitch == 'auth'"></app-auth-form>
+        <!-- AUTH END -->
+
+        <!-- REGISTRATION START -->
+        <app-registration *ngIf="tabSwitch == 'registration'"></app-registration>
+        <!-- REGISTRATION END -->
+
+        <!-- RESTORE START -->
+        <app-restore *ngIf="tabSwitch == 'restore'"></app-restore>
+        <!-- RESTORE END -->
+      </div>
+
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<!-- <ion-footer class="ion-no-border" *ngIf="closeGreeting">
+  <ion-toolbar class="ion-text-center small">
+    {{'inp_your_phone' |tr}}
+  </ion-toolbar>
+</ion-footer> -->

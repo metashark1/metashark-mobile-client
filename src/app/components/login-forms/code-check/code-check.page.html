@@ -1,0 +1,67 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="_userService.logOut()">
+        <span class="text-danger">
+          {{'log_out' |tr}}
+        </span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-row class="d-flex ion-justify-content-center ion-align-items-center h-100">
+    <ion-col size="12">
+      <div class="ion-padding">
+        <img src="assets/img/metashark_logo.svg" class="logo">
+      </div>
+
+      <form [formGroup]="codeForm" class="ion-padding">
+        <ion-item class="is-input" color="light">
+          <ion-label>
+            <ion-icon name="finger-print"></ion-icon>
+          </ion-label>
+          <ion-input type="tel" placeholder="{{'code' |tr}}" formControlName="code" autofocus>
+          </ion-input>
+        </ion-item>
+        <label class="error" *ngIf="getValidity('code')">
+          <span *ngIf="!codeForm.value.code">*{{'required' |tr}}</span>
+        </label>
+
+        <div class="mt-5 ion-text-end">
+          <ion-button type="submit" expand="block" color="warning" (click)="onSubmit()" [disabled]="!codeForm.valid"
+            class="ion-text-uppercase submit-btn">
+            {{'submit' |tr}}
+            <ion-spinner *ngIf="isSaving['form']" name="lines-small" class="ion-margin-start"></ion-spinner>
+          </ion-button>
+        </div>
+      </form>
+
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar class="ion-text-center small">
+    {{'enter_email_confirm_code' |tr}}:<br>
+    <div>
+      <ion-text color="primary">{{_userService.userData.email}}</ion-text>
+    </div>
+
+    <ion-button (click)="codeResend()" fill="clear" size="small" [disabled]="isSaving['timer']"
+      *ngIf="timer == true; else elseBlock">
+      <ion-icon name="repeat-outline" *ngIf="!isSaving['timer']"></ion-icon>
+      <ion-spinner name="lines-small" *ngIf="isSaving['timer']"></ion-spinner>
+      {{'repeat_code' |tr}}
+    </ion-button>
+
+    <ng-template #elseBlock>
+      <div class="mt-2 mb-2">
+        {{'repeat_code_may_be' |tr}} <ion-text color="warning" class="bold">{{timer}}</ion-text>
+      </div>
+    </ng-template>
+
+  </ion-toolbar>
+</ion-footer>

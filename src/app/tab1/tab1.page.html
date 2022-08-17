@@ -1,0 +1,43 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-title>
+      META 🦈 SHARK
+    </ion-title> -->
+    <img src="assets/img/metashark_logo.svg" class="logo">
+    <!-- <ion-button fill="clear" slot="end" class="toolbar-btn hide-on-mobile" (click)="doRefresh($event)">
+      <ion-icon name="search-outline"></ion-icon>
+    </ion-button> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen *ngIf="!!this._userService.userData">
+
+  <!-- REFRESHER FN START  -->
+  <ion-refresher slot="fixed" pullFactor="0.3" pullMin="65" pullMax="120" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-- REFRESHER FN END  -->
+
+  <!-- HEADER START  -->
+  <!-- <ion-header collapse="condense" class="ion-no-border">
+    <ion-toolbar>
+      <ion-title size="large">{{'orders' |tr}}</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+  <!-- HEADER END  -->
+
+  <!-- COURIER LISTING START  -->
+  <!-- <app-listing-courier #courier></app-listing-courier> -->
+
+  <app-main-slider></app-main-slider>
+  <app-main-list></app-main-list>
+  <!-- COURIER LISTING END  -->
+
+  <!-- INF SCROLL FN START  -->
+  <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="lines">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+  <!-- INF SCROLL FN END  -->
+
+</ion-content>

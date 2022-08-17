@@ -1,0 +1,20 @@
+<ion-app>
+  <ion-router-outlet></ion-router-outlet>
+
+  <div class="dataWaiting" *ngIf="!versionIsActual">
+    <div class="content">
+      <ion-icon
+        name="cloud-offline-outline"
+        size="large"
+        color="danger"
+      ></ion-icon>
+      <div class="h6 mb-1 bold">
+        Trial period expired
+      </div>
+      <div class="small mb-5">
+        trial period expired
+      </div>
+    </div>
+    <div class="blur-bg"></div>
+  </div>
+</ion-app>

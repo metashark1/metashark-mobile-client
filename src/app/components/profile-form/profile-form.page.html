@@ -1,0 +1,123 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>{{'editing' |tr}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="{{'back' |tr}}" defaultHref="/user/profile"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense" class="ion-no-border">
+    <ion-toolbar>
+      <ion-title size="large">{{pageTitle |tr}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-row class="d-flex">
+    <ion-col size="12">
+      <form [formGroup]="profileForm" class="ion-padding" *ngIf="formType == 'profile'">
+        <ion-item class="is-input ion-margin-bottom" color="light">
+          <ion-label>
+            <ion-icon name="at-outline"></ion-icon>
+          </ion-label>
+          <ion-input type="email" autocomplete="email" placeholder="{{'email' |tr}}" formControlName="email" clearInput
+            autofocus email>
+          </ion-input>
+        </ion-item>
+        <label class="error" *ngIf="getValidity('email')">
+          <span *ngIf="!profileForm.value.email">*{{'required' |tr}}</span>
+          <span *ngIf="profileForm.value.email">{{'incorrect' |tr}}</span>
+        </label>
+
+        <ion-item class="is-input ion-margin-bottom" color="light">
+          <ion-label>
+            <ion-icon name="person-outline"></ion-icon>
+          </ion-label>
+          <ion-input type="text" autocomplete="name" placeholder="{{'name' |tr}}" formControlName="name" clearInput>
+          </ion-input>
+        </ion-item>
+        <label class="error" *ngIf="getValidity('name')">
+          <span *ngIf="!profileForm.value.name">*{{'required' |tr}}</span>
+          <span *ngIf="profileForm.value.name">{{'incorrect' |tr}}</span>
+        </label>
+
+        <ion-item class="is-input ion-margin-bottom" color="light">
+          <ion-label>
+            <ion-icon name="call-outline"></ion-icon>
+          </ion-label>
+          <ion-input type="tel" autocomplete="tel" simpleMask="+38 099 999 99 99" placeholder="{{'phone' |tr}}"
+            formControlName="phone" clearInput autofocus>
+          </ion-input>
+        </ion-item>
+        <label class="error" *ngIf="getValidity('phone')">
+          <span *ngIf="!profileForm.value.phone">*{{'required' |tr}}</span>
+          <span *ngIf="profileForm.value.phone">{{'incorrect' |tr}}</span>
+        </label>
+
+        <div class="mt-5 ion-text-end ion-margin-top">
+          <ion-button type="submit" (click)="onSubmitProfile()" [disabled]="!profileForm.valid || inProcess['profile']"
+            class="ion-text-uppercase submit-btn">
+            {{'save' |tr}}
+            <ion-icon *ngIf="!inProcess['profile']" name="arrow-forward-outline" class="small ion-margin-start"></ion-icon>
+            <ion-spinner *ngIf="inProcess['profile']" name="lines-small" class="ion-margin-start"></ion-spinner>
+          </ion-button>
+        </div>
+      </form>
+
+
+      <form [formGroup]="chPassForm" class="ion-padding" *ngIf="formType == 'password'">
+        <ion-item class="is-input ion-margin-bottom" color="light">
+          <ion-label>
+            <ion-icon name="finger-print-outline"></ion-icon>
+          </ion-label>
+          <ion-input type="password" placeholder="{{'oldPassword' |tr}}" formControlName="oldPassword" clearInput
+            autofocus>
+          </ion-input>
+        </ion-item>
+        <label class="error" *ngIf="getValidityRestore('oldPassword')">
+          <span *ngIf="!chPassForm.value.oldPassword">*{{'required' |tr}}</span>
+          <span *ngIf="chPassForm.value.oldPassword">{{'incorrect' |tr}}</span>
+        </label>
+
+        <ion-item class="is-input ion-margin-bottom" color="light">
+          <ion-label>
+            <ion-icon name="lock-closed-outline"></ion-icon>
+          </ion-label>
+          <ion-input type="password" placeholder="{{'password' |tr}}" formControlName="newPassword" clearInput>
+          </ion-input>
+        </ion-item>
+        <label class="error" *ngIf="getValidityRestore('newPassword')">
+          <span *ngIf="!chPassForm.value.newPassword">*{{'required' |tr}}</span>
+          <span *ngIf="chPassForm.value.newPassword">{{'incorrect' |tr}}</span>
+        </label>
+
+        <ion-item class="is-input" color="light">
+          <ion-label>
+            <ion-icon name="lock-closed-outline"></ion-icon>
+          </ion-label>
+          <ion-input type="password" placeholder="{{'password_repeat' |tr}}" formControlName="newPassword2" clearInput>
+          </ion-input>
+        </ion-item>
+        <label class="error" *ngIf="getValidityRestore('newPassword2')">
+          <span *ngIf="!chPassForm.value.newPassword2">*{{'required' |tr}}</span>
+          <span *ngIf="chPassForm.value.newPassword2">{{'incorrect' |tr}}</span>
+        </label>
+        <label class="error">
+          <span class="error" *ngIf="chPassForm.hasError('notSamePassword')">{{'not_same_password' |tr}}</span>
+        </label>
+
+        <div class="mt-5 ion-text-end ion-margin-top">
+          <ion-button type="submit" (click)="onSubmitPassword()" [disabled]="!chPassForm.valid"
+            class="ion-text-uppercase submit-btn">
+            {{'next' |tr}}
+            <ion-icon *ngIf="!inProcess['password']" name="arrow-forward-outline" class="small ion-margin-start">
+            </ion-icon>
+            <ion-spinner *ngIf="inProcess['password']" name="lines-small" class="ion-margin-start"></ion-spinner>
+          </ion-button>
+        </div>
+      </form>
+
+    </ion-col>
+  </ion-row>
+</ion-content>

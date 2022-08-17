@@ -1,0 +1,67 @@
+:host {
+    height: 222px;
+    margin-bottom: 24px!important;
+    margin-top: 4px!important;
+}
+
+.main-slider-wrap {
+    background-position: 50% !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+
+    .smoke {
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.85), rgba(20, 20, 20, 0.7) 45%, rgba(83, 100, 141, 0.1));
+    }
+
+    .text {
+        text-align: left;
+    }
+
+    .text h2,
+    .text span {
+        display: inline-block;
+        color: whitesmoke;
+        line-height: 1.3em;
+    }
+
+    .text p {
+        color: whitesmoke;
+    }
+
+    .play-btn {
+        font-size: 64px;
+        color: #ffffffcf;
+    }
+
+    .row-content {
+        height: 190px;
+    }
+}
+
+.loading {
+    width: 100%;
+    height: 100%;
+    animation: loadingBg 3s infinite;
+
+    @keyframes loadingBg {
+        0% {
+            background-color: #2d2d2d;
+        }
+
+        25% {
+            background-color: #696969;
+        }
+
+        50% {
+            background-color: #2d2d2d;
+        }
+
+        75% {
+            background-color: #696969;
+        }
+
+        100% {
+            background-color: #2d2d2d;
+        }
+    }
+}

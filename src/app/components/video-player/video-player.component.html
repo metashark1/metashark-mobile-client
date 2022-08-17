@@ -1,0 +1,10 @@
+<!-- https://stackoverflow.com/questions/48059697/angular-5-get-current-time-of-video -->
+
+<ng-container *ngIf="!!videoSrc">
+  <div class="player">
+    <video #videoPlayer [controls]="true" (timeupdate)="getCurrentTime($event)" [src]="videoSrc | safe" [poster]="poster" playsinline>
+      <!-- <source [src]="singleMovieVideo[0].playlists['480'] | safe" type="video/mp4" /> -->
+    </video>
+    <!-- <div class="cover" [style.background-image]="'url(' + poster + ')'"></div> -->
+  </div>
+</ng-container>

@@ -1,0 +1,21 @@
+<div [routerLink]="['/movie', item?.imdb]" class="movie-card">
+  <div class="bg-poster" [style.background-image]="'url(' + item?.image + ')'"></div>
+  <!-- <div class="bg-poster"
+    style="background-image: url('https://assets.mubicdn.net/images/notebook/post_images/19720/images-w1400.jpg?1445431100');">
+  </div> -->
+  <div class="content">
+    <ion-row class="ion-align-items-stretch h-100">
+      <ion-col size="12">
+        <p class="title truncate3">
+          {{item?.title}}
+        </p>
+      </ion-col>
+      <ion-col size="12" class="ion-align-self-end">
+        <ion-badge color="warning">
+          <ion-icon name="play"></ion-icon>
+          watch
+        </ion-badge>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>

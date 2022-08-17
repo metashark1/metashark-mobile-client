@@ -1,0 +1,41 @@
+<form [formGroup]="authorizationForm" class="ion-padding">
+  <ion-item class="is-input ion-margin-bottom" color="light">
+    <ion-label>
+      <ion-icon name="at-outline"></ion-icon>
+    </ion-label>
+    <ion-input type="email" autocomplete="email" placeholder="{{'email' |tr}}" formControlName="login" clearInput
+      autofocus email>
+    </ion-input>
+  </ion-item>
+  <label class="error" *ngIf="getValidity('login')">
+    <span *ngIf="!authorizationForm.value.login">*{{'required' |tr}}</span>
+    <span *ngIf="authorizationForm.value.login">{{'incorrect' |tr}}</span>
+  </label>
+
+  <ion-item class="is-input ion-margin-bottom" color="light">
+    <ion-label>
+      <ion-icon name="lock-closed-outline"></ion-icon>
+    </ion-label>
+    <ion-input [type]="passwordType" autocomplete="password" placeholder="{{'password' |tr}}"
+      formControlName="password">
+    </ion-input>
+    <div class="show_hide_pass">
+      <ion-icon [hidden]="passwordType == 'text'" name="eye-outline" item-right (click)="togglePasswordMode()">
+      </ion-icon>
+      <ion-icon [hidden]="passwordType == 'password'" name="eye-off-outline" item-right (click)="togglePasswordMode()">
+      </ion-icon>
+    </div>
+  </ion-item>
+  <label class="error" *ngIf="getValidity('password')">
+    <span *ngIf="!authorizationForm.value.password">*{{'required' |tr}}</span>
+    <span *ngIf="authorizationForm.value.password">{{'incorrect' |tr}}</span>
+  </label>
+
+  <div class="mt-5 ion-text-center ion-margin-top">
+    <ion-button type="submit" expand="block" color="warning" (click)="onSubmit()"
+      [disabled]="!authorizationForm.valid || inProcess">
+      {{'sign_in' |tr}}
+      <ion-spinner *ngIf="inProcess" name="lines-small" class="ion-margin-start"></ion-spinner>
+    </ion-button>
+  </div>
+</form>

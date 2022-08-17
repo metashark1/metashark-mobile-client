@@ -1,0 +1,49 @@
+<div class="comments-wrap pt-3 ion-padding-start">
+  <ion-row class="ion-align-items-center">
+    <ion-col size="8">
+      <h3 class="m-0">Coments</h3>
+    </ion-col>
+    <ion-col size="4" class="ion-text-right ion-padding-end ">
+      <a (click)="addComment()">
+        Add coment
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </a>
+    </ion-col>
+  </ion-row>
+
+  <div class="forecast-container-wrap" *ngIf="isLoaded && commentsList.length">
+    <ion-row class="forecast-container">
+      <ion-col size="5" class="forecast-item" *ngFor="let item of commentsList;">
+        <div class="comment p-2" (click)="commentDetail(item)">
+          <p class="small text-muted mt-0">
+            {{item?.createdAt | date: 'dd.mm.yyyy hh:mm'}}
+          </p>
+          <div class="truncate4 small m-0">
+            {{item?.text}}
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="forecast-container-wrap" *ngIf="isLoaded && !commentsList.length">
+    <ion-row class="forecast-container">
+      <ion-col size="5" class="forecast-item">
+        <div class="comment p-2 ion-text-center text-muted d-flex ion-align-items-center ion-justify-content-center">
+          <div>
+            <h2 class="m-0">
+              <ion-icon name="file-tray-outline"></ion-icon>
+            </h2>
+            <p class="m-0">
+              {{'no_comment'}}
+            </p>
+            <p class="small text-muted m-0">
+              {{'you_will_be_first'}}
+            </p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+</div>

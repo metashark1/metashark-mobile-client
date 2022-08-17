@@ -1,0 +1,34 @@
+<ion-header translucent class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">{{'close'}}</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="ion-padding">
+    <form [formGroup]="commentForm" class="ion-padding">
+
+      <ion-item class="is-input ion-margin-bottom" color="light">
+        <ion-label>
+          <ion-icon name="document-text-outline"></ion-icon>
+        </ion-label>
+        <ion-textarea placeholder="{{'left_comment' |tr}}" formControlName="text" autofocus></ion-textarea>
+      </ion-item>
+      <label class="error" *ngIf="getValidity('text')">
+        <span *ngIf="!commentForm.value.text">*{{'required' |tr}}</span>
+        <span *ngIf="commentForm.value.text">{{'incorrect' |tr}}</span>
+      </label>
+
+      <div class="mt-5 ion-text-end ion-margin-top">
+        <ion-button type="submit" (click)="onSubmit()" [disabled]="!commentForm.valid || inProcess"
+          class="ion-text-uppercase submit-btn">
+          {{'publish' |tr}}
+          <ion-icon *ngIf="!inProcess" name="arrow-forward-outline" class="small ion-margin-start"></ion-icon>
+          <ion-spinner *ngIf="inProcess" name="lines-small" class="ion-margin-start"></ion-spinner>
+        </ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

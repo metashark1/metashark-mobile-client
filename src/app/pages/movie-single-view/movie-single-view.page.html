@@ -1,0 +1,124 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="{{'back' |tr}}" defaultHref="/user/listing"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title>#{{requestId}}</ion-title> -->
+    <ion-button fill="clear" slot="end" class="toolbar-btn ion-hide">
+      <ion-icon name="copy-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="isLoaded && singleMovie">
+  <ion-refresher #refresh slot="fixed" pullFactor="0.3" pullMin="65" pullMax="120" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="pb-5 pt-3">
+    <ng-container *ngIf="singleMoviePlaylists && singleMovieVideoUrl">
+      <app-video-player [poster]="poster" [movieId]="singleMovie?.imdb" [videoSrc]="singleMovieVideoUrl">
+      </app-video-player>
+    </ng-container>
+    <ng-container *ngIf="!singleMoviePlaylists">
+      <div class="player-skeleton">
+        <ion-spinner></ion-spinner>
+      </div>
+    </ng-container>
+
+    <div class="ion-padding">
+      <ion-row class="ion-align-items-center row-content">
+        <ion-col size="9" class="p-0">
+          <ng-container *ngIf="singleMoviePlaylists">
+
+            <ion-chip color="warning" class="ml-0" *ngIf="singleMovieVideo.serial == '1'" (click)="selectSeries()">
+              <ion-label>
+                {{ selectedSeriesView() }}
+                <ion-icon class="small" name="chevron-down-outline"></ion-icon>
+              </ion-label>
+            </ion-chip>
+
+            <ion-chip color="warning" class="ml-0" (click)="selectQualityDialogue()">
+              <ion-label>
+                {{(singleMovieVideoQual == 'quality')? singleMovieVideoQual : (singleMovieVideoQual + 'x')}}
+                <ion-icon class="small" name="chevron-down-outline"></ion-icon>
+              </ion-label>
+            </ion-chip>
+          </ng-container>
+        </ion-col>
+        <ion-col size="3" class="ion-text-end p-0">
+          <ion-fab-button size="small" class="ml-auto m-0" color="light" (click)="favouriteAction(singleMovie?.imdb)">
+            <ion-icon name="heart" *ngIf="!favourite.favouriteToggleProcess[singleMovie?.imdb]"
+              [ngClass]="{'text-danger': favourite.isFavourite(singleMovie?.imdb)}"></ion-icon>
+            <ion-spinner class="text-danger" *ngIf="favourite.favouriteToggleProcess[singleMovie?.imdb]"></ion-spinner>
+          </ion-fab-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-text>
+        <h2 class="mb-1">{{singleMovie?.title}}</h2>
+        <p class="small text-muted m-0">
+          <span class="pr-2">
+            imdb: {{singleMovie?.rating?.imdb}}
+          </span>
+          <span class="pr-2">
+            {{singleMovie?.year}}
+          </span>
+          <span class="pr-2">
+            {{singleMovie?.duration}} min.
+          </span>
+          <span class="pr-2" *ngIf="singleMovie?.params?.serial == '1'">
+            {{ 'serial' |tr }}
+          </span>
+        </p>
+      </ion-text>
+
+      <p>
+        {{singleMovie?.description}}
+      </p>
+
+      <div>
+        <a [routerLink]="['/user/search']" [queryParams]="{pagename: genre?.key, genre: genre?.key}"
+          class="pr-3 text-warning small" *ngFor="let genre of singleMovie?.genre">
+          #{{genre?.key}}
+        </a>
+      </div>
+
+    </div>
+
+    <div class="actors pt-3 ion-padding-start" *ngIf="singleMovie?.actors && singleMovie.actors.length">
+      <ion-text>
+        <h4 class="mt-0">Actors</h4>
+      </ion-text>
+      <div class="forecast-container-wrap actors">
+        <ion-row class="forecast-container">
+          <ion-col [routerLink]="['/user/search']" [queryParams]="{pagename: actor?.name, actor: actor?.id}" size="3"
+            class="forecast-item" *ngFor="let actor of singleMovie?.actors;">
+            <div class="item-cover" [style.background-image]="'url(' + actor.image + ')'"></div>
+            <p class="small">
+              {{ actor?.name }}
+            </p>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+
+    <app-comments *ngIf="!!singleMovie && singleMovie.id" [movieId]="singleMovie?.id"></app-comments>
+
+    <!-- <pre class="small" *ngIf="!!singleMoviePlaylists">
+      {{singleMoviePlaylists |json}}
+    </pre> -->
+
+    <!-- <pre class="small">
+      {{singleMovie |json}}
+    </pre> -->
+
+  </div>
+</ion-content>
+
+<ion-content *ngIf="!isLoaded">
+  <!-- LOADING -->
+  <div class="center-container ion-text-center">
+    <ion-spinner></ion-spinner>
+  </div>
+</ion-content>

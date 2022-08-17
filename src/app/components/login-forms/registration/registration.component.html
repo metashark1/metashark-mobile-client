@@ -1,0 +1,69 @@
+<!-- CONFIRM REGISTRATION FORM START  -->
+<form [formGroup]="registrationForm" class="ion-padding">
+  <ion-item class="is-input ion-margin-bottom" color="light">
+    <ion-label>
+      <ion-icon name="at-outline"></ion-icon>
+    </ion-label>
+    <ion-input type="email" autocomplete="email" placeholder="{{'email' |tr}}" formControlName="email" clearInput
+      autofocus email>
+    </ion-input>
+  </ion-item>
+  <label class="error" *ngIf="getValidity('email')">
+    <span *ngIf="!registrationForm.value.email">*{{'required' |tr}}</span>
+    <span *ngIf="registrationForm.value.email">{{'incorrect' |tr}}</span>
+  </label>
+
+  <ion-item class="is-input" color="light">
+    <ion-label>
+      <ion-icon name="lock-closed-outline"></ion-icon>
+    </ion-label>
+    <ion-input [type]="passwordType['password']" placeholder="{{'password' |tr}}" formControlName="password" clearInput>
+    </ion-input>
+    <div class="show_hide_pass">
+      <ion-icon [hidden]="passwordType.password == 'text'" name="eye-outline" item-right
+        (click)="togglePasswordMode('password')">
+      </ion-icon>
+      <ion-icon [hidden]="passwordType.password == 'password'" name="eye-off-outline" item-right
+        (click)="togglePasswordMode('password')">
+      </ion-icon>
+    </div>
+  </ion-item>
+  <label class="error" *ngIf="getValidity('password')">
+    <span *ngIf="!registrationForm.value.password">*{{'required' |tr}}</span>
+    <span *ngIf="registrationForm.value.password">{{'incorrect' |tr}}</span>
+  </label>
+
+  <ion-item class="is-input" color="light">
+    <ion-label>
+      <ion-icon name="lock-closed-outline"></ion-icon>
+    </ion-label>
+    <ion-input [type]="passwordType['password2']" placeholder="{{'password2' |tr}}" formControlName="password2"
+      clearInput>
+    </ion-input>
+    <div class="show_hide_pass">
+      <ion-icon [hidden]="passwordType.password2 == 'text'" name="eye-outline" item-right
+        (click)="togglePasswordMode('password2')">
+      </ion-icon>
+      <ion-icon [hidden]="passwordType.password2 == 'password'" name="eye-off-outline" item-right
+        (click)="togglePasswordMode('password2')">
+      </ion-icon>
+    </div>
+  </ion-item>
+  <label class="error" *ngIf="getValidity('password2')">
+    <span *ngIf="!registrationForm.value.password2">*{{'required' |tr}}</span>
+    <span *ngIf="registrationForm.value.password2">{{'incorrect' |tr}}</span>
+    <span class="error" *ngIf="registrationForm.hasError('notSamePassword')">{{'not_same_password' |tr}}</span>
+  </label>
+  <label class="error">
+    <span class="error" *ngIf="registrationForm.hasError('notSamePassword')">{{'not_same_password' |tr}}</span>
+  </label>
+
+  <div class="mt-5 ion-text-end">
+    <ion-button type="submit" expand="block" color="warning" (click)="onSubmitConfirm()"
+      [disabled]="!registrationForm.valid || isSaving">
+      {{'sign_up' |tr}}
+      <ion-spinner *ngIf="isSaving" name="lines-small" class="ion-margin-start"></ion-spinner>
+    </ion-button>
+  </div>
+</form>
+<!-- CONFIRM REGISTRATION FORM END  -->

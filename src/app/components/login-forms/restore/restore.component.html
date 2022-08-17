@@ -1,0 +1,91 @@
+<form [formGroup]="restoreForm" class="ion-padding" *ngIf="!showRestoreForm">
+  <ion-item class="is-input ion-margin-bottom" color="light">
+    <ion-label>
+      <ion-icon name="at-outline"></ion-icon>
+    </ion-label>
+    <ion-input type="email" autocomplete="email" placeholder="{{'email' |tr}}" formControlName="login" clearInput
+      autofocus email>
+    </ion-input>
+  </ion-item>
+
+  <label class="error" *ngIf="getValidity('login')">
+    <span *ngIf="!restoreForm.value.login">*{{'required' |tr}}</span>
+    <span *ngIf="restoreForm.value.login">{{'incorrect' |tr}}</span>
+  </label>
+
+  <div class="mt-5 ion-text-end ion-margin-top">
+    <ion-button type="submit" expand="block" color="warning" (click)="onSubmitRestore()"
+      [disabled]="!restoreForm.valid">
+      {{'restore_password' |tr}}
+      <ion-spinner *ngIf="isSaving['restore']" name="lines-small" class="ion-margin-start"></ion-spinner>
+    </ion-button>
+  </div>
+</form>
+
+
+<form [formGroup]="restoreConfirmForm" class="ion-padding" *ngIf="showRestoreForm">
+  <ion-item class="is-input ion-margin-bottom" color="light">
+    <ion-label>
+      <ion-icon name="finger-print-outline"></ion-icon>
+    </ion-label>
+    <ion-input type="tel" placeholder="{{'code' |tr}}" formControlName="code" clearInput autofocus>
+    </ion-input>
+  </ion-item>
+  <label class="error" *ngIf="getValidityRestore('code')">
+    <span *ngIf="!restoreConfirmForm.value.code">*{{'required' |tr}}</span>
+    <span *ngIf="restoreConfirmForm.value.code">{{'incorrect' |tr}}</span>
+  </label>
+
+  <ion-item class="is-input ion-margin-bottom" color="light">
+    <ion-label>
+      <ion-icon name="lock-closed-outline"></ion-icon>
+    </ion-label>
+    <ion-input [type]="passwordType['newPassword']" placeholder="{{'password' |tr}}" formControlName="newPassword"
+      clearInput>
+    </ion-input>
+    <div class="show_hide_pass">
+      <ion-icon [hidden]="passwordType.newPassword == 'text'" name="eye-outline" item-right
+        (click)="togglePasswordMode('newPassword')">
+      </ion-icon>
+      <ion-icon [hidden]="passwordType.newPassword == 'password'" name="eye-off-outline" item-right
+        (click)="togglePasswordMode('newPassword')">
+      </ion-icon>
+    </div>
+  </ion-item>
+  <label class="error" *ngIf="getValidityRestore('newPassword')">
+    <span *ngIf="!restoreConfirmForm.value.newPassword">*{{'required' |tr}}</span>
+    <span *ngIf="restoreConfirmForm.value.newPassword">{{'incorrect' |tr}}</span>
+  </label>
+
+  <ion-item class="is-input" color="light">
+    <ion-label>
+      <ion-icon name="lock-closed-outline"></ion-icon>
+    </ion-label>
+    <ion-input [type]="passwordType['newPassword2']" placeholder="{{'password_repeat' |tr}}"
+      formControlName="newPassword2" clearInput>
+    </ion-input>
+    <div class="show_hide_pass">
+      <ion-icon [hidden]="passwordType.newPassword2 == 'text'" name="eye-outline" item-right
+        (click)="togglePasswordMode('newPassword2')">
+      </ion-icon>
+      <ion-icon [hidden]="passwordType.newPassword2 == 'password'" name="eye-off-outline" item-right
+        (click)="togglePasswordMode('newPassword2')">
+      </ion-icon>
+    </div>
+  </ion-item>
+  <label class="error" *ngIf="getValidityRestore('newPassword2')">
+    <span *ngIf="!restoreConfirmForm.value.newPassword2">*{{'required' |tr}}</span>
+    <span *ngIf="restoreConfirmForm.value.newPassword2">{{'incorrect' |tr}}</span>
+  </label>
+  <label class="error">
+    <span class="error" *ngIf="restoreConfirmForm.hasError('notSamePassword')">{{'not_same_password' |tr}}</span>
+  </label>
+
+  <div class="mt-5 ion-text-end ion-margin-top">
+    <ion-button type="submit" expand="block" color="warning" (click)="onSubmitRestoreConfirm()"
+      [disabled]="!restoreConfirmForm.valid">
+      {{'restore_password' |tr}}
+      <ion-spinner *ngIf="isSaving['confirm']" name="lines-small" class="ion-margin-start"></ion-spinner>
+    </ion-button>
+  </div>
+</form>

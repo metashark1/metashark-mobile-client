@@ -1,0 +1,52 @@
+.player-skeleton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 232px;
+}
+
+.actors {
+
+    .forecast-item {
+        text-align: center;
+    }
+
+    .item-cover {
+        display: block;
+        width: 100%;
+        height: 100px;
+        background-position: 50% !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        background-color: #2d2d2d;
+        animation: loadingBg 3s infinite;
+        border-radius: 2px;
+
+        @keyframes loadingBg {
+            0% {
+                background-color: #2d2d2d;
+            }
+
+            25% {
+                background-color: #696969;
+            }
+
+            50% {
+                background-color: #2d2d2d;
+            }
+
+            75% {
+                background-color: #696969;
+            }
+
+            100% {
+                background-color: #2d2d2d;
+            }
+        }
+    }
+
+    .forecast-item {
+        max-width: 23% !important;
+        min-width: 75px;
+    }
+}

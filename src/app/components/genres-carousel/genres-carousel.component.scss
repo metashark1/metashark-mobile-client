@@ -1,0 +1,48 @@
+.genre {
+    width: 100%;
+    height: 64px;
+    background-color: #2d2d2d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: whitesmoke;
+
+    &.loading {
+        animation: loadingBg 3s infinite;
+    }
+
+    >span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        padding: 0 4px;
+    }
+
+    @keyframes loadingBg {
+        0% {
+            background-color: #2d2d2d;
+        }
+
+        25% {
+            background-color: #696969;
+        }
+
+        50% {
+            background-color: #2d2d2d;
+        }
+
+        75% {
+            background-color: #696969;
+        }
+
+        100% {
+            background-color: #2d2d2d;
+        }
+    }
+}
+
+.forecast-item {
+    max-width: 24% !important;
+}

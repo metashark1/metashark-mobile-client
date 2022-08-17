@@ -1,0 +1,28 @@
+<ion-slides *ngIf="isLoadedAdditional['slidersList']">
+  <ion-slide [routerLink]="['/movie', item?.imdb]" *ngFor="let item of slidersList">
+    <div class="slide">
+      <div class="main-slider-wrap" [style.background-image]="'url(' + item?.backdrops[0] + ')'">
+        <div class="ion-padding smoke">
+          <ion-row class="ion-align-items-center row-content">
+            <ion-col size="9" class="text">
+              <h2 class="truncate2">
+                {{ item?.title}}
+              </h2>
+              <p class="m-0 small truncate3">
+                {{ item?.description }}
+              </p>
+            </ion-col>
+            <ion-col size="3" class="ion-text-center">
+              <ion-fab-button size="large" color="light" class="mx-auto">
+                <ion-icon name="play-outline" class="ml-1 text-warning"></ion-icon>
+              </ion-fab-button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+    </div>
+  </ion-slide>
+</ion-slides>
+
+
+<div class="loading" *ngIf="!isLoadedAdditional['slidersList']"></div>

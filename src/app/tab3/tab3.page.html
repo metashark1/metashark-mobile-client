@@ -1,0 +1,33 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      {{'profile' |tr}}
+    </ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button [routerLink]="['/profile-form/user', _userService.userData.id]">
+        <ion-icon name="create-outline"></ion-icon>
+        {{'edit' |tr}}
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<div class="dataWaiting" *ngIf="_userService.noConnection">
+  <div class="content">
+    <ion-icon name="cloud-offline-outline" size="large" color="danger"></ion-icon>
+    <div class="h6 mb-5">{{'no_connection' |tr}}</div>
+  </div>
+  <div class="blur-bg"></div>
+</div>
+
+<ion-content [fullscreen]="true" *ngIf="!!this._userService.userData">
+  <ion-header collapse="condense" class="ion-no-border">
+    <ion-toolbar>
+      <ion-title size="large">{{'profile' |tr}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- PROFILE COMPONENT START -->
+  <app-profile-view></app-profile-view>
+  <!-- PROFILE COMPONENT END -->
+</ion-content>

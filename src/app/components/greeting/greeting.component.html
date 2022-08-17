@@ -1,0 +1,67 @@
+<!-- <ion-footer class="ion-no-border">
+  <ion-toolbar transparent>
+    <ion-fab-button (click)="closeGr()" size="small" color="dark" class="ml-auto">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-toolbar>
+</ion-footer> -->
+
+
+<ion-content fullscreen class="ion-padding" scroll-y="false">
+  <ion-slides #sliderRef pager="true">
+    <ion-slide>
+      <div class="slide">
+        <img
+          src="https://cdni.iconscout.com/illustration/premium/thumb/woman-streaming-live-video-4268363-3561006.png" />
+        <h2>Welcome</h2>
+        <p>
+          <b>Lorem ipsum</b> dolor sit amet, consectetur adipiscing elit. Donec vel felis dolor. Morbi pharetra auctor
+          posuere. Aliquam consequat commodo hendrerit. Nunc in fermentum ante.
+        </p>
+        <div class="ion-text-right ion-margin-top">
+          <ion-button fill="clear" (click)="swipeNext()">
+            Next
+            <ion-icon slot="end" name="arrow-forward"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="https://cdni.iconscout.com/illustration/premium/thumb/woman-streaming-live-video-4268363-3561006.png" />
+      <h2>What is Meta 🦈 Shark?</h2>
+      <p>
+        Nunc rutrum felis non mauris aliquet auctor. <b>Morbi facilisis nibh lectus</b>, et rhoncus nulla cursus nec.
+        Mauris facilisis in odio a semper
+      </p>
+      <div class="ion-text-right ion-margin-top">
+        <ion-button fill="clear" (click)="swipeNext()">
+          Next
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="https://cdni.iconscout.com/illustration/premium/thumb/woman-streaming-live-video-4268363-3561006.png" />
+      <h2>How to use?</h2>
+      <p>
+        Nam cursus mi neque, ac <b>interdum mi vulputate</b> at. Phasellus placerat ligula est, in condimentum lectus
+        cursus sed. Sed bibendum pharetra purus
+      </p>
+      <div class="ion-text-right ion-margin-top">
+        <ion-button fill="clear" (click)="swipeNext()">
+          Next
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="https://cdni.iconscout.com/illustration/premium/thumb/woman-streaming-live-video-4268363-3561006.png" />
+      <h2>Ready to Play?</h2>
+      <ion-button fill="clear" (click)="wanaBeCourier()">Continue <ion-icon slot="end" name="arrow-forward"></ion-icon>
+      </ion-button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

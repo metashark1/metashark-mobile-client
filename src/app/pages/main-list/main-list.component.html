@@ -1,0 +1,99 @@
+<!-- EMPTY RESP -->
+<!-- <div class="center-container ion-text-center" *ngIf="isLoaded && allFilms?.length == 0">
+  <ion-icon name="close-circle-outline" class="ion-margin-bottom big-icon"></ion-icon>
+    <div>{{'empty_order' |tr}}</div>
+</div> -->
+
+<!-- LOADING -->
+<!-- <div class="center-container ion-text-center" *ngIf="isLoaded">
+    <ion-spinner></ion-spinner>
+  </div> -->
+
+<div class="ion-padding-start mb-4">
+  <ion-row class="ion-align-items-center">
+    <ion-col size="8">
+      <h3 class="m-0">Newest</h3>
+    </ion-col>
+    <ion-col size="4" class="ion-text-right ion-padding-end ">
+      <a [routerLink]="['/user/search']" [queryParams]="{pagename: 'Newest', type: 'Lastest' }">
+        Watch all
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </a>
+    </ion-col>
+  </ion-row>
+  <!-- *ngIf="isLoadedAdditional['newestList']" -->
+  <div class="forecast-container-wrap">
+    <ion-row class="forecast-container">
+      <ion-col size="5" class="forecast-item forecast-square" *ngFor="let item of newestList;">
+        <app-movie-square-card [item]="item"></app-movie-square-card>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>
+
+<app-genres-carousel></app-genres-carousel>
+
+<div class="ion-padding-start mb-4" *ngIf="favourite.userFavouriteList && favourite.userFavouriteList.length">
+  <ion-row class="ion-align-items-center">
+    <ion-col size="8">
+      <h3 class="m-0">Favourites</h3>
+    </ion-col>
+    <ion-col size="4" class="ion-text-right ion-padding-end ">
+      <a [routerLink]="['/user/favourite']">
+        Watch all
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </a>
+    </ion-col>
+  </ion-row>
+  <div class="forecast-container-wrap">
+    <ion-row class="forecast-container">
+      <ion-col size="5" class="forecast-item forecast-square" *ngFor="let item of favourite.userFavouriteList;">
+        <app-movie-square-card [item]="item"></app-movie-square-card>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>
+
+<div class="ion-padding-start mb-4">
+  <ion-row class="ion-align-items-center">
+    <ion-col size="8">
+      <h3 class="m-0">Serials</h3>
+    </ion-col>
+    <ion-col size="4" class="ion-text-right ion-padding-end ">
+      <a [routerLink]="['/user/search']" [queryParams]="{pagename: 'Serials', serial: 1}">
+        Watch all
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </a>
+    </ion-col>
+  </ion-row>
+  <!-- *ngIf="isLoadedAdditional['animationList']" -->
+  <div class="forecast-container-wrap">
+    <ion-row class="forecast-container">
+      <ion-col size="5" class="forecast-item forecast-square" *ngFor="let item of serialList;">
+        <app-movie-square-card [item]="item"></app-movie-square-card>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>
+
+<div class="ion-padding-start mb-4">
+  <ion-row class="ion-align-items-center">
+    <ion-col size="8">
+      <h3 class="m-0">Animation</h3>
+    </ion-col>
+    <ion-col size="4" class="ion-text-right ion-padding-end ">
+      <a [routerLink]="['/user/search']" [queryParams]="{pagename: 'Animation', genre: 'Animation'}">
+        Watch all
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </a>
+    </ion-col>
+  </ion-row>
+  <!-- *ngIf="isLoadedAdditional['animationList']" -->
+  <div class="forecast-container-wrap">
+    <ion-row class="forecast-container">
+      <ion-col size="5" class="forecast-item forecast-square" *ngFor="let item of animationList;">
+        <app-movie-square-card [item]="item"></app-movie-square-card>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>

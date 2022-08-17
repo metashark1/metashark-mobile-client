@@ -1,0 +1,30 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      Favourites
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="!!this._userService.userData">
+  <ion-refresher slot="fixed" pullFactor="0.3" pullMin="65" pullMax="120" (ionRefresh)="listing.doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-header collapse="condense" class="ion-no-border">
+    <ion-toolbar>
+      <ion-title size="large">
+        Favourites
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-favourite #listing></app-favourite>
+
+  <!-- INF SCROLL FN START  -->
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="lines">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <!-- INF SCROLL FN END  -->
+</ion-content>

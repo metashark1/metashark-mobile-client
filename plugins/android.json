@@ -1,0 +1,68 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-camera": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-crop": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-ionic-webview": {
+      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-nativeaudio": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-taptic-engine": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-telerik-imagepicker": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "onesignal-cordova-plugin": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "com.shark.meta"
+    }
+  },
+  "dependent_plugins": {}
+}

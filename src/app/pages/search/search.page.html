@@ -1,0 +1,139 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="{{'back' |tr}}" defaultHref="/user/listing"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ pageName }}</ion-title>
+    <ion-buttons slot="end" *ngIf="searchForm && !isEmptyForm()">
+      <ion-button (click)="clearSeacrhForm()">
+        <span class="text-danger">
+          {{'clear' |tr}}
+          <ion-icon name="close-outline"></ion-icon>
+        </span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- HEADER START  -->
+  <ion-header collapse="condense" class="ion-no-border">
+    <ion-toolbar>
+      <ion-title size="large">{{ pageName }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <!-- HEADER END  -->
+
+  <ng-container *ngIf="!queryParams?.pagename && queryParamsLoaded">
+    <form [formGroup]="searchForm">
+      <div class="ion-padding-horizontal mb-2 mt-2">
+        <ion-chip class="ml-0" [ngClass]="{'text-warning': searchForm.value.year}" (click)="openSelect('year')">
+          <ion-label>
+            {{(searchForm.value.year)? searchForm.value.year : 'year'}}
+            <ion-icon class="small" name="chevron-down-outline"></ion-icon>
+          </ion-label>
+        </ion-chip>
+
+        <ion-chip [ngClass]="{'text-warning': searchForm.value.genre}" (click)="openSelect('genre')">
+          <ion-label>
+            {{(searchForm.value.genre)? searchForm.value.genre : 'genre'}}
+            <ion-icon class="small" name="chevron-down-outline"></ion-icon>
+          </ion-label>
+        </ion-chip>
+
+        <ion-chip [ngClass]="{'text-warning': searchForm.value.country}" (click)="openSelect('country')">
+          <ion-label>
+            {{(searchForm.value.country)? searchForm.value.country : 'country'}}
+            <ion-icon class="small" name="chevron-down-outline"></ion-icon>
+          </ion-label>
+        </ion-chip>
+
+        <ion-chip [ngClass]="{'text-warning': searchForm.value.serial}" (click)="openSelect('serial')">
+          <ion-label>
+            {{(searchForm.value.serial)? ('serial: ' + ((searchForm.value.serial)? 'yes' : 'no')) : 'serial'}}
+            <ion-icon class="small" name="chevron-down-outline"></ion-icon>
+          </ion-label>
+        </ion-chip>
+
+        <!-- <ion-chip color="warning">
+          <ion-label>
+            <ion-icon name="chevron-down-outline"></ion-icon>
+          </ion-label>
+        </ion-chip> -->
+
+        <!-- FAKE SELECT AREA START  -->
+        <ion-item class="ion-hide">
+          <ion-label>Year</ion-label>
+          <ion-select #year formControlName="year">
+            <ion-select-option [value]="currentYear - i" *ngFor="let item of yearSearchArray; index as i;">
+              {{currentYear - i}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item class="ion-hide" *ngIf="apService.isLoaded['genres']">
+          <ion-label>Genre</ion-label>
+          <ion-select #genre formControlName="genre">
+            <ion-select-option [value]="item?.id" *ngFor="let item of apService.genresList; index as i;">
+              {{ item?.name }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item class="ion-hide" *ngIf="apService.isLoaded['countries']">
+          <ion-label>Country</ion-label>
+          <ion-select #country formControlName="country">
+            <ion-select-option [value]="item?.id" *ngFor="let item of apService.countriesList; index as i;">
+              {{ item?.id }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item class="ion-hide">
+          <ion-label>Serial</ion-label>
+          <ion-select #serial formControlName="serial">
+            <ion-select-option [value]="1">Yes</ion-select-option>
+            <ion-select-option [value]="0">No</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <!-- FAKE SELECT AREA END  -->
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container *ngIf="isLoaded && allFilms?.length > 0">
+    <!-- <app-news-card [item]="item" *ngFor="let item of allSearch;"></app-news-card> -->
+    <div class="ion-padding ion-margin-bottom">
+      <ion-row>
+        <ion-col size="4" class="forecast-item" *ngFor="let item of allFilms;">
+          <app-movie-def-card [item]="item"></app-movie-def-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ng-container>
+
+  <!-- LOADING -->
+  <div class="center-container ion-text-center" *ngIf="!isLoaded">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <!-- LOADING -->
+  <div class="center-container ion-text-center" *ngIf="isLoaded && !allFilms?.length">
+    <div class="empty_box">
+      <ion-icon name="file-tray-outline" class="text-muted big-icon"></ion-icon>
+      <h4>
+        Nothing found
+      </h4>
+      <p class="small text-muted m-0">
+        try to change request
+      </p>
+    </div>
+  </div>
+
+  <!-- INF SCROLL FN START  -->
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="lines">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <!-- INF SCROLL FN END  -->
+</ion-content>

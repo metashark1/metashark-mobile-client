@@ -1,0 +1,39 @@
+<!-- EMPTY RESP -->
+<div class="center-container ion-text-center"
+  *ngIf="favourite.isFavouriteLoaded && favourite.userFavouriteList?.length == 0">
+  <div class="empty_box">
+    <ion-icon name="heart-dislike-outline" class="text-muted big-icon"></ion-icon>
+    <h4>
+      {{ 'favourite_empty' |tr }}
+    </h4>
+    <p class="small text-muted mt-0 mb-4">
+      {{ 'find_your_favourite' |tr }}
+    </p>
+    <ion-button fill="clear" [routerLink]="['/user/search']">
+      {{ 'go_to_search' |tr }}
+    </ion-button>
+  </div>
+</div>
+
+<!-- LOADING -->
+<div class="center-container ion-text-center" *ngIf="!favourite.isFavouriteLoaded">
+  <ion-spinner></ion-spinner>
+</div>
+
+<ng-container *ngIf="favourite.isFavouriteLoaded && favourite.userFavouriteList?.length > 0">
+  <div class="ion-padding ion-margin-bottom">
+    <ion-row>
+      <ion-col size="4" class="forecast-item favourite-item" *ngFor="let item of favourite.userFavouriteList;">
+        <app-movie-def-card [item]="item"></app-movie-def-card>
+
+        <ion-fab-button size="small" class="ml-auto m-0" color="light" (click)="favourite.toggle(item?.imdb)">
+          <ion-icon name="heart" *ngIf="!favourite.favouriteToggleProcess[item?.imdb]"
+            [ngClass]="{'text-danger': favourite.isFavourite(item?.imdb)}"></ion-icon>
+          <ion-spinner class="text-danger" *ngIf="favourite.favouriteToggleProcess[item?.imdb]"></ion-spinner>
+        </ion-fab-button>
+
+      </ion-col>
+    </ion-row>
+  </div>
+
+</ng-container>
