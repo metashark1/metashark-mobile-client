@@ -13,7 +13,7 @@ import {
   FileUploadOptions,
   FileTransferObject,
 } from "@ionic-native/file-transfer/ngx";
-import { Camera, CameraOptions } from "@ionic-native/Camera/ngx";
+import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 import { NgFerhadoTranslatorPipe } from "src/app/services/ng-f-translator/ng-f-translator.pipe";
 import { InAppBrowserService } from "src/app/services/in-app-browser.service";
 import { GlobalToastService } from "src/app/services/global-toast.service";

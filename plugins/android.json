@@ -7,6 +7,9 @@
     "files": {}
   },
   "installed_plugins": {
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "com.shark.meta"
+    },
     "cordova-plugin-camera": {
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "com.shark.meta"
@@ -58,9 +61,6 @@
       "PACKAGE_NAME": "com.shark.meta"
     },
     "onesignal-cordova-plugin": {
-      "PACKAGE_NAME": "com.shark.meta"
-    },
-    "cordova-plugin-androidx-adapter": {
       "PACKAGE_NAME": "com.shark.meta"
     }
   },
